@@ -1,35 +1,58 @@
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+        tabBarActiveTintColor: 'lime',         
+        tabBarInactiveTintColor: 'white',    
+        tabBarStyle: {
+          backgroundColor: 'black',      
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,                        
+          color: 'lime',                      
+        },
+        tabBarIconStyle: {
+          marginBottom: 1,                   
+        }
+      }}
+      initialRouteName='home'
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="search"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          title: 'Search',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="search" color={color} />,
+        }}
+      />
+       <Tabs.Screen
+        name="favourites"
+        options={{
+          title: 'Favourites',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="star" color={color} />,
+        }}
+      />
+       <Tabs.Screen
+        name="movies"
+        options={{
+          title: 'Movies',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="film" color={color} />,
+        }}
+      />
+         <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
         }}
       />
     </Tabs>
